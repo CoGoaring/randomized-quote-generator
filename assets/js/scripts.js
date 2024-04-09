@@ -5,6 +5,9 @@ const obj = {
     method: `GET`,
 }
 
+// localStorage, will return empty [] if there are no sentences generated yet
+const sentences = JSON.parse(localStorage.getItem(`sentences`) || `[]`);
+// localStorage ----------
 let randomQuote =``;
 
 function generatePromises(quoteArray) {
@@ -50,16 +53,18 @@ function reCreateString(quoteArray) {
         sentence += `${quoteArray[i]} `;
     }
     console.log(sentence);
-
+    // localStorage ----------
+    saveStorage(sentence);
+    // localStorage ----------
     return sentence;
 }
 
+// Get API values ----------
 function getQuote() {
     fetch(quotesURL, obj).then(response => response.json()).then(function (data) {
         randomizeQuote(data[0].content);
       });
 }
-
 function getWord() {
     let word;
     return fetch(wordsURL, obj).then(response => response.json()).then(function (data) {
@@ -69,6 +74,21 @@ function getWord() {
         return word;
       });
 }
+// Get API values ----------
+
+// localStorage ----------
+function saveStorage(sentence) {
+    sentences.push(sentence);
+    localStorage.setItem(`sentences`, JSON.stringify(sentences));
+}
+function deleteStorage() {
+    localStorage.setItem(`sentences`, `[]`);
+}
+function deleteStorageItem(index) {
+    const removed = sentences.splice(index, 1)
+    localStorage.setItem(`sentences`, JSON.stringify(sentences));
+}
+// localStorage ----------
 
 div.addEventListener(`click`, getQuote);
 // MORE JAVASCRIPT GOES HERE 
