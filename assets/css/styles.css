@@ -1,15 +1,137 @@
+:root{
+    --primary-color:#050525;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    background: var(--primary-color)
+}
+header{
+  top: 0;
+  left: 0;
+  width: 100%;  
+  padding: 15px 200px;
+  display: flex;
+  justify-content: space-between ;
+  align-items: center;
+  transition: 0.5s ease;
 }
 
-#click {
-    width: 100px;
-    height: 50px;
-    border: 3px solid black;
-    border-radius: 15px;
+header{
+background: var(--primary-color);
+  padding: 10px 200px;
+}
+header .brand{
+  color: white;
+  font-size: 1.5em;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+header .navigation{
+  position:relative;
+}
+header .navigation a{
+  color: white;
+  font-size: 2em;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 30px;
+}
+
+#main{
+    display: flex;
+    justify-content: center; 
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    gap: 30px;
+    flex-direction: column;
+}
+#wrapper{
+    height: 60vh;
+    display: flex;
+    border-radius: 10px;
+    padding: 20px 50px;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+#wrapper i{
+    font-size: 25px;
+    pointer-events: none;
+}
+#image-container{
+    height: 100%;
+    width:50vw;
+    overflow: hidden;
+    padding: 0px 30px;
+}
+#image-carousel{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    gap: 100px;
+    position: relative;
+    text-align: center;
+    color: black;
+}
+#image-carousel img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    position: absolute;
+    transition: 2s;
+    padding: 0px 15px;
+
+}
+.centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+button{
+    cursor: pointer;
+    padding: 10px;
+    background: #fff;
+    background-color: white;
+    border-radius: 10px;
+}
+#navigation{
+    width: 100vw;
+    border-radius: 20px;
+    padding: 5px;
     text-align: center;
 }
+
+#footer{
+background: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  padding: 2em;
+}
+
+
+
+#footer p{
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#footer p a{
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+
