@@ -41,7 +41,8 @@ body {
     width: 100%;
     gap: 100px;
     position: relative;
-
+    text-align: center;
+    color: black;
 }
 #image-carousel img{
     height: 100%;
@@ -51,6 +52,13 @@ body {
     position: absolute;
     transition: 2s;
     padding: 0px 15px;
+
+}
+.centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
 }
 button{
