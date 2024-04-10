@@ -1,19 +1,25 @@
 const wrapper =document.querySelector('#wrapper');
 const carousel =document.querySelector('#image-carousel');
-const images = document.querySelectorAll('img');
+let images = document.querySelectorAll('img');
+
+const createdDiv = document.querySelectorAll(`div`);
+const randomizedQuote = document.querySelector(`#randomized-quote`);
+
 const btn = document.querySelectorAll('button');
 const previous = document.querySelector('#prev');
 const nxt =document.querySelector('#next');
-const div = document.querySelector('#click')
+const div = document.querySelector('#click');
 const quotesURL = `https://api.quotable.io/quotes/random?maxLength=35`;
 const wordsURL = `https://random-word-api.herokuapp.com/word`;
 const obj = {
     method: `GET`,
 }
 
+let counter = 0;
+let currentQuoteIndex = 0;
 
 // localStorage, will return empty [] if there are no sentences generated yet
-const sentences = JSON.parse(localStorage.getItem(`sentences`) || `[]`);
+const sentences = JSON.parse(localStorage.getItem(`sentences`) || `["Randomized quote of the day"]`);
 // localStorage ----------
 let randomQuote =``;
 
@@ -63,7 +69,7 @@ function reCreateString(quoteArray) {
     // localStorage ----------
     saveStorage(sentence);
     // localStorage ----------
-    return sentence;
+    display(sentence);
 }
 
 // Get API values ----------
@@ -72,19 +78,37 @@ function getQuote() {
         randomizeQuote(data[0].content);
       });
 }
-function getWord() {
+// might not need the async or await anymore? but it doesn't harm our code
+async function getWord() {
     let word;
-    return fetch(wordsURL, obj).then(response => response.json()).then(function (data) {
-        // word(data[0]);
+    return await fetch(wordsURL, obj).then(response => response.json()).then(function (data) {
         word = data[0];
-        // console.log(word);
         return word;
       });
 }
 // Get API values ----------
 
+function display (sentence) {
+    const newImg = document.createElement(`img`);
+
+    newImg.setAttribute(`src`, `https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2016%2F08%2F08%2F09%2F17%2Favatar-1577909_1280.png&f=1&nofb=1&ipt=2ad91ad2567b6243d67f48f72090b3542e6c93e8b1593285077c1f65f7ca970a&ipo=images`);
+    carousel.appendChild(newImg);
+
+    /*TODO: Make a conditional and a function that can pull the user from any position to the front, that way
+            they can generate quotes from any quote they are currently on.*/
+    // if (counter !== images.length) {
+    //     counter = 
+    // }
+    // update
+    currentQuoteIndex++;
+    counter++;
+    slideImage();
+    setTimeout(() => {randomizedQuote.textContent = sentence}, 500);
+}
+
 // localStorage ----------
 function saveStorage(sentence) {
+    console.log(sentences);
     sentences.push(sentence);
     localStorage.setItem(`sentences`, JSON.stringify(sentences));
 }
@@ -105,9 +129,13 @@ images.forEach((img, index) =>{
     img.style.left  = `${index * 100}%`
     
 })
-let counter = 0;
 
-const slideImage = ()=>{
+function slideImage () {
+    images = document.querySelectorAll('img');
+    images.forEach((img, index) =>{
+        img.style.left  = `${index * 100}%`
+        
+    })
     images.forEach(
         (e) => {
             e.style.transform = `translateX(-${counter*100}%)`
@@ -118,19 +146,23 @@ const slideImage = ()=>{
 const prev = ()=>{
     if(counter > 0){
 
-        counter --;
+        counter--;
         slideImage();
-        console.log(counter);
-    
+        currentQuoteIndex--;
+        randomizedQuote.textContent = "";
+        setTimeout(() => {randomizedQuote.textContent = sentences[currentQuoteIndex]}, 1000);
     }
 }
 
 const next = ()=>{
     if(counter <= (images.length - 2)){
 
-        counter ++;
+        counter++;
         slideImage();
-        console.log(counter);
+        // console.log(counter);
+        currentQuoteIndex++;
+        randomizedQuote.textContent = "";
+        setTimeout(() => {randomizedQuote.textContent = sentences[currentQuoteIndex]}, 1000);
     }
 
 }
