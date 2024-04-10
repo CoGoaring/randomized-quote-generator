@@ -1,9 +1,16 @@
-const div = document.querySelector(`#click`);
+const wrapper =document.querySelector('#wrapper');
+const carousel =document.querySelector('#image-carousel');
+const images = document.querySelectorAll('img');
+const btn = document.querySelectorAll('button');
+const previous = document.querySelector('#prev');
+const nxt =document.querySelector('#next');
+const div = document.querySelector('#click')
 const quotesURL = `https://api.quotable.io/quotes/random?maxLength=35`;
 const wordsURL = `https://random-word-api.herokuapp.com/word`;
 const obj = {
     method: `GET`,
 }
+
 
 // localStorage, will return empty [] if there are no sentences generated yet
 const sentences = JSON.parse(localStorage.getItem(`sentences`) || `[]`);
@@ -92,3 +99,38 @@ function deleteStorageItem(index) {
 
 div.addEventListener(`click`, getQuote);
 // MORE JAVASCRIPT GOES HERE 
+
+// CODE FOR MAKING THE IMAGES SLIDER 
+images.forEach((img, index) =>{
+    img.style.left  = `${index * 100}%`
+    
+})
+let counter = 0;
+
+const slideImage = ()=>{
+    images.forEach(
+        (e) => {
+            e.style.transform = `translateX(-${counter*100}%)`
+        }
+    )
+}
+
+const prev = ()=>{
+    if(counter > 0){
+
+        counter --;
+        slideImage();
+        console.log(counter);
+    
+    }
+}
+
+const next = ()=>{
+    if(counter <= (images.length - 2)){
+
+        counter ++;
+        slideImage();
+        console.log(counter);
+    }
+
+}
