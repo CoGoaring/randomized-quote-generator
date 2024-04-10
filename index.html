@@ -23,29 +23,29 @@
   </header>
     <!-- find an image slider -->
     <main id="main">
-<!-- this section is going to contain the previous image with the random quote -->
-
 
         <section id="wrapper">
-            <div>
+            <section>
                 <button class="active" id="prev" onclick="prev()"><i class="fa-solid fa-arrow-left"></i></button>
-            </div>
-            <div id="image-container">
-                <div id="image-carousel">
+            </section>
+            <section id="image-container">
+                <section id="image-carousel">
+
                     <img src="https://source.unsplash.com/l4HAkTlJQP0" alt="">
-                    <div class="centered"><h3>Randomized quote of the day</h3></div>
-                    <img src="https://source.unsplash.com/cKrlYuPEQis" alt="">
-                    <div class="centered"><h3>Randomized quote of the day</h3></div>
-                    <img src="https://source.unsplash.com/1c33ba-uh_8" alt="">
-                    <div class="centered"><h3>Randomized quote of the day</h3></div>
-                </div>
-            </div>
-            <div>
+                    <div class="centered"><h3 id="randomized-quote">Randomized quote of the day</h3></div>
+                    <!-- <img src="https://source.unsplash.com/cKrlYuPEQis" alt=""> -->
+                    <!-- <div class="centered"><h3>Randomized quote of the day</h3></div> -->
+                    <!-- <img src="https://source.unsplash.com/1c33ba-uh_8" alt=""> -->
+                    <!-- <div class="centered"><h3>Randomized quote of the day</h3></div> -->
+                    
+                </section>
+                <!-- <div class="centered"><h3 id="randomized-quote"></h3></div> -->
+            </section>
+            <section>
                 <button class="active" id="next" onclick="next()"><i class="fa-solid fa-arrow-right"></i></button>
-            </div>
+            </section>
         </section>
         <div><button id="click">Random</button></div>
-<!-- this sectionn is going to have the curently generated image with the text -->
         
 
 
@@ -58,4 +58,3 @@
     <script src="./assets/js/scripts.js"></script>
 </body>
 </html>
-
