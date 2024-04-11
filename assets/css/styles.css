@@ -118,6 +118,17 @@ button{
     text-align: center;
 }
 
+.modal-container {
+  position: relative;
+
+}
+
+#modal-container.modal-container img {
+  position: relative;
+  left: 0 !important;
+  
+}
+
 #footer{
 background: var(--primary-color);
   color: #fff;

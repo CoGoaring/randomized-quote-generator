@@ -1,9 +1,16 @@
 const wrapper =document.querySelector('#wrapper');
 const carousel =document.querySelector('#image-carousel');
-let images = document.querySelectorAll('img');
+
+let images = Array.from(document.querySelector('#image-carousel').children);
+
+console.log(images);
+//.filter(element => element === `img`?element:false);
 
 const createdDiv = document.querySelectorAll(`div`);
 const randomizedQuote = document.querySelector(`#randomized-quote`);
+
+const modalContainer = document.querySelector(`#modal-container`);
+const modalRandomizedQuote = document.querySelector(`#modal-randomized-quote`);
 
 const btn = document.querySelectorAll('button');
 const previous = document.querySelector('#prev');
@@ -41,13 +48,13 @@ function generatePromises(quoteArray) {
     return Promise.all(promises);
 }
 
-function randomizeQuote(randomQuote) {
+async function randomizeQuote(randomQuote) {
     console.log(randomQuote);
 
     const quoteArray = randomQuote.split(" ");
     // here we are grabbing said data from the promise, similar to how you would a fetch because
     // a fetch is technically a promise.
-    generatePromises(quoteArray).then(newWords => {
+     return await generatePromises(quoteArray).then(newWords => {
         let newWordCount = 0;
         for (let i=0; i<quoteArray.length; i++) {
             if (quoteArray[i] === `randomize`) {
@@ -57,7 +64,7 @@ function randomizeQuote(randomQuote) {
         }
         console.log(quoteArray);
 
-        reCreateString(quoteArray);
+        return reCreateString(quoteArray);
     });
 }
 
@@ -68,15 +75,17 @@ function reCreateString(quoteArray) {
     }
     console.log(sentence);
     // localStorage ----------
-    saveStorage(sentence);
+    // saveStorage(sentence);
     // localStorage ----------
-    display(sentence);
+
+    return sentence;
+    // display(sentence);
 }
 
 // Get API values ----------
-function getQuote() {
-    fetch(quotesURL, obj).then(response => response.json()).then(function (data) {
-        randomizeQuote(data[0].content);
+async function getQuote() {
+    return await fetch(quotesURL, obj).then(response => response.json()).then(function (data) {
+        return randomizeQuote(data[0].content);
       });
 }
 // might not need the async or await anymore? but it doesn't harm our code
@@ -89,22 +98,32 @@ async function getWord() {
 }
 // Get API values ----------
 
-function display (sentence) {
-    const newImg = document.createElement(`img`);
+// function display(sentence) {
+//     const newImg = document.createElement(`img`);
 
-    newImg.setAttribute(`src`, `https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2016%2F08%2F08%2F09%2F17%2Favatar-1577909_1280.png&f=1&nofb=1&ipt=2ad91ad2567b6243d67f48f72090b3542e6c93e8b1593285077c1f65f7ca970a&ipo=images`);
-    carousel.appendChild(newImg);
+//     newImg.setAttribute(`src`, `https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2016%2F08%2F08%2F09%2F17%2Favatar-1577909_1280.png&f=1&nofb=1&ipt=2ad91ad2567b6243d67f48f72090b3542e6c93e8b1593285077c1f65f7ca970a&ipo=images`);
+//     carousel.appendChild(newImg);
 
-    /*TODO: Make a conditional and a function that can pull the user from any position to the front, that way
-            they can generate quotes from any quote they are currently on.*/
-    // if (counter !== images.length) {
-    //     counter = 
-    // }
+//     /*TODO: Make a conditional and a function that can pull the user from any position to the front, that way
+//             they can generate quotes from any quote they are currently on.*/
+//     // if (counter !== images.length) {
+//     //     counter = 
+//     // }
+//     // update
+//     currentQuoteIndex++;
+//     counter++;
+//     slideImage();
+//     setTimeout(() => {randomizedQuote.textContent = sentence}, 500);
+// }
+
+function modalDisplay(sentence) {
+
+
     // update
-    currentQuoteIndex++;
-    counter++;
-    slideImage();
-    setTimeout(() => {randomizedQuote.textContent = sentence}, 500);
+    // currentQuoteIndex++;
+    // counter++;
+    // slideImage();
+    setTimeout(() => {modalRandomizedQuote.textContent = sentence}, 500);
 }
 
 // localStorage ----------
@@ -132,7 +151,7 @@ images.forEach((img, index) =>{
 })
 
 function slideImage () {
-    images = document.querySelectorAll('img');
+    images = Array.from(document.querySelector('#image-carousel').children);
     images.forEach((img, index) =>{
         img.style.left  = `${index * 100}%`
         
@@ -170,9 +189,36 @@ const next = ()=>{
 
 //From the bulma modal
 //function to open the modal
-function openModal(){
+async function openModal(){
     //add is-active class to the modal
     document.getElementById('modal').classList.add('is-active');
+
+    let sentence = await getQuote()
+    console.log(sentence);
+    modalDisplay(sentence);
+}
+
+function addToGallery() {
+    const sentence = modalRandomizedQuote.textContent;
+    randomizedQuote.textContent = sentence;
+    saveStorage(sentence);
+
+    const newImg = document.createElement(`img`);
+
+    newImg.setAttribute(`src`, `https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2016%2F08%2F08%2F09%2F17%2Favatar-1577909_1280.png&f=1&nofb=1&ipt=2ad91ad2567b6243d67f48f72090b3542e6c93e8b1593285077c1f65f7ca970a&ipo=images`);
+    carousel.append(newImg);
+
+    // update
+    currentQuoteIndex++;
+    counter++;
+    slideImage();
+
+    closeModal();
+}
+
+async function changeQuote() {
+    let sentence = await getQuote();
+    modalRandomizedQuote.textContent = sentence;
 }
 
 document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete .modal-card-foot .button').forEach(($el) => {
