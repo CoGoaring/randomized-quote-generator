@@ -181,6 +181,9 @@ document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .de
         $modal.classList.remove('is-active')
     })
 })
+function closeModal(){
+    document.getElementById('modal').classList.remove('is-active')
+}
 
 
-//TODO: make the save btn save to the localstorage
+//TODO: make the save btn save to the localstoarage
