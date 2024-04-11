@@ -32,7 +32,7 @@
                 <section id="image-carousel">
 
                     <img src="https://source.unsplash.com/l4HAkTlJQP0" alt="">
-                    <div class="centered"><h3 id="randomized-quote">Randomized quote of the day</h3></div>
+                    <div class="centered"><h3 id="randomized-quote">Welcome</h3></div>
                     <!-- <img src="https://source.unsplash.com/cKrlYuPEQis" alt=""> -->
                     <!-- <div class="centered"><h3>Randomized quote of the day</h3></div> -->
                     <!-- <img src="https://source.unsplash.com/1c33ba-uh_8" alt=""> -->
@@ -45,16 +45,10 @@
                 <button class="active" id="next" onclick="next()"><i class="fa-solid fa-arrow-right"></i></button>
             </section>
         </section>
-        
-        <div><button id="click" >Random</button></div>
-        
-
 
     </main>
-    <footer id="footer">
-        <p>Copyright @2024 <a href="#">Group 01</a> All Rights Reserved</p>
+   
 
-    </footer>
 
     <div id="modal" class="modal">
         <div class="modal-background"></div>
@@ -63,15 +57,12 @@
                 <p class="modal-card-title">Randomized quote</p>
             </header>
             <section class="modal-card-body">
-                <h1>My Random Quote</h1>
-                <!-- <p class="image is-0.5by0.5">
-                    <img src="https://source.unsplash.com/l4HAkTlJQP0" alt="">
-                </p> -->
-                <p>Would you like to save the above quote?</p>
+
 
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-success">Save </button>
+                <!-- <div><button id="click" >Random</button></div> -->
+                <button onclick="closeModal();" class="button is-success" id="click">Change it Up </button>
                 <button onclick="closeModal();" class="button"> Delete</button>
             </footer>
             <!-- <div class="box">
@@ -85,7 +76,11 @@
         </div>
         
     </div>
-    <button onclick="openModal();" class="button is-primary" >Open the modal</button>
+    <button onclick="openModal();" class="button is-primary" >Get Inspired</button>
+    <footer id="footer">
+        <p>Copyright @2024 <a href="#">Group 01</a> All Rights Reserved</p>
+
+    </footer>
 
     <script src="./assets/js/scripts.js"></script>
     

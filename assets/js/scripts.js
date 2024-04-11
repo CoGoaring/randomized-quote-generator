@@ -9,6 +9,7 @@ const btn = document.querySelectorAll('button');
 const previous = document.querySelector('#prev');
 const nxt =document.querySelector('#next');
 const div = document.querySelector('#click');
+
 const quotesURL = `https://api.quotable.io/quotes/random?maxLength=35`;
 const wordsURL = `https://random-word-api.herokuapp.com/word`;
 const obj = {
