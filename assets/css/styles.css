@@ -38,6 +38,7 @@ header .brand{
 
 header .navigation{
   position:relative;
+  float: inline-end;
 }
 header .navigation a{
   color: white;

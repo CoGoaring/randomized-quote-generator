@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" target="_blank" rel="noopener" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.0/css/bulma.min.css">
 
     
 </head>
@@ -18,7 +19,6 @@
         <a href="#">Edwin</a>
         <a href="#">Connor</a>
         <a href="#">Gordon</a>
-        
     </nav>
   </header>
     <!-- find an image slider -->
@@ -45,7 +45,8 @@
                 <button class="active" id="next" onclick="next()"><i class="fa-solid fa-arrow-right"></i></button>
             </section>
         </section>
-        <div><button id="click">Random</button></div>
+        
+        <div><button id="click" >Random</button></div>
         
 
 
@@ -55,6 +56,38 @@
 
     </footer>
 
+    <div id="modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Randomized quote</p>
+            </header>
+            <section class="modal-card-body">
+                <h1>My Random Quote</h1>
+                <!-- <p class="image is-0.5by0.5">
+                    <img src="https://source.unsplash.com/l4HAkTlJQP0" alt="">
+                </p> -->
+                <p>Would you like to save the above quote?</p>
+
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success">Save </button>
+                <button class="button "> Delete</button>
+            </footer>
+            <!-- <div class="box">
+                <p class="image is-1by1">
+                    <img src="https://source.unsplash.com/l4HAkTlJQP0" alt="">
+                </p> -->
+                
+            <!-- Your content -->
+            <!-- </div> -->
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+        
+    </div>
+    <button onclick="openModal();" class="button is-primary" >Open the modal</button>
+
     <script src="./assets/js/scripts.js"></script>
+    
 </body>
 </html>

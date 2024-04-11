@@ -166,3 +166,21 @@ const next = ()=>{
     }
 
 }
+
+//From the bulma modal
+//function to open the modal
+function openModal(){
+    //add is-active class to the modal
+    document.getElementById('modal').classList.add('is-active');
+}
+
+document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete .modal-card-foot .button').forEach(($el) => {
+    const $modal = $el.closest('.modal');
+
+    $el.addEventListener('click', () =>{
+        $modal.classList.remove('is-active')
+    })
+})
+
+
+//TODO: make the save btn save to the localstorage
