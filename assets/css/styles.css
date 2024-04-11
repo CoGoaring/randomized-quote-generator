@@ -38,6 +38,7 @@ header .brand{
 
 header .navigation{
   position:relative;
+  float: inline-end;
 }
 header .navigation a{
   color: white;
@@ -115,6 +116,17 @@ button{
     border-radius: 20px;
     padding: 5px;
     text-align: center;
+}
+
+.modal-container {
+  position: relative;
+
+}
+
+#modal-container.modal-container img {
+  position: relative;
+  left: 0 !important;
+  
 }
 
 #footer{
