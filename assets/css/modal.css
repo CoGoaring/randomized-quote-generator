@@ -1,0 +1,15 @@
+.modal-container {
+    position: relative;
+  
+  }
+  #modal-container.modal-container img {
+    position: relative;
+    left: 0 !important;
+    
+  }
+  #modal-container div h3 {
+    font-size: 30px;
+    color: black;
+    text-shadow: var(--text-shadow-glow) 1px 0 10px;
+    text-align: center;
+}
