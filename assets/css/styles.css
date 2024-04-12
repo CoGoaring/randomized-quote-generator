@@ -114,6 +114,7 @@ header .navigation a{
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
+    /* text-align: center; */
 }
 button{
     cursor: pointer;
@@ -122,7 +123,24 @@ button{
     background-color: white;
     border-radius: 10px;
 }
-/* ---------------------------------------------------------- */
+/* Modal-------------------------------------------------- */
+#modal-container{
+    height: 100%;
+    width:100%;
+    overflow: hidden;
+    padding: 0px 30px
+}
+#modal-container img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    position: absolute;
+    transition: 2s;
+    padding: 0px 15px;
+}
+
+/* Footer --------------------------------------------------- */
 #footer{
 background: var(--primary-color);
   color: #fff;

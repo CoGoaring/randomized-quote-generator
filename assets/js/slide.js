@@ -9,6 +9,7 @@ images.forEach((img, index) =>{
     img.style.left  = `${index * 100}%`
     
 })
+//Function to translate the image 
 function slideImage () {
     images = Array.from(document.querySelector('#image-carousel').children);
     images.forEach((img, index) =>{
@@ -21,6 +22,7 @@ function slideImage () {
         }
     )
 }
+//slides the image to the left 
 const prev = ()=>{
     if(counter > 0){
 
@@ -31,12 +33,12 @@ const prev = ()=>{
         setTimeout(() => {randomizedQuote.textContent = sentences[currentQuoteIndex]}, 1000);
     }
 }
+// slides the image to the right
 const next = ()=>{
     if(counter <= (images.length - 2)){
 
         counter++;
         slideImage();
-        // console.log(counter);
         currentQuoteIndex++;
         randomizedQuote.textContent = "";
         setTimeout(() => {randomizedQuote.textContent = sentences[currentQuoteIndex]}, 1000);

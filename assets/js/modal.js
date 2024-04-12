@@ -22,6 +22,7 @@ function addToGallery() {
     currentQuoteIndex++;
     counter++;
     slideImage();
+    changeQuote();
     closeModal();
 }
 
