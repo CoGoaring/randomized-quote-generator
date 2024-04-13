@@ -2,6 +2,7 @@ const randomizedQuote = document.querySelector(`#randomized-quote`);
 const modalRandomizedQuote = document.querySelector(`#modal-randomized-quote`);
 const quotesURL = `https://api.quotable.io/quotes/random?maxLength=35`;
 const wordsURL = `https://random-word-api.herokuapp.com/word`;
+const giphyURL = `https://api.giphy.com/v1/gifs/api_key:alDhJqRHIak83lrYtY6JEDGeuObq5h81&limit=1`
 const obj = {
     method: `GET`,
 }
@@ -25,6 +26,14 @@ async function getWord() {
     return await fetch(wordsURL, obj).then(response => response.json()).then(function (data) {
         word = data[0];
         return word;
+      });
+}
+async function getGiphy() {
+    let giphy;
+    return await fetch(giphyURL, obj).then(response => response.json()).then(function (data) {
+        giphy = data;
+        // return word;
+        // console.log(giphy);
       });
 }
 // Get API values -------------------------------------------------------------------------------------
@@ -69,6 +78,7 @@ function reCreateString(quoteArray) {
         sentence += `${quoteArray[i]} `;
     }
 
+    getGiphy()
     return sentence;
 }
 // Generate Quote -------------------------------------------------------------------------------------
